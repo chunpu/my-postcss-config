@@ -1,0 +1,85 @@
+/* 抄了 postcss-salad 的例子 */
+
+$blue: #056ef0;
+$column: 200px;
+
+:fullscreen a {
+    display: flex
+}
+
+body {
+  /* IE6 应该显示 orange, IE7 应该显示 blue, 其他显示 #eee */
+  background: linear-gradient(to bottom, #000 0%, #fff 100%);
+  /* IE6 IE7 专用 */
+  *background: blue;
+  /* IE6 专用 */
+  _background: orange;
+  .inner {
+    width: 700px;
+    margin: 0 auto;
+  }
+}
+
+.menu {
+    width: calc(4 * $column);
+}
+
+.menu_link {
+    background: $blue;
+    width: $column;
+}
+
+
+/* before */
+
+.notice--clear {
+    @if 3 < 5 {
+        background: green;
+    }
+    @else {
+        background: blue;
+    }
+}
+
+/* before */
+
+@for $i from 1 to 3 {
+    .b-$i { width: $(i)px; }
+}
+
+
+/* before */
+
+@define-mixin icon $name {
+    padding-left: 16px;
+
+    &::after {
+        content: "";
+        background-url: url(/icons/$(name).png);
+    }
+}
+
+.search {
+    @mixin icon search;
+}
+
+
+/* before */
+
+@define-extend bg-green {
+    background: green;
+}
+
+.notice--clear {
+    @extend bg-green;
+}
+
+/* Before */
+
+
+/* Before */
+
+.heading {
+    margin: 20px;
+    padding: @margin;
+}
